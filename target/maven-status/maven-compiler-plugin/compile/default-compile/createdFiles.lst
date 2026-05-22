@@ -1,0 +1,6 @@
+pe/edu/utp/transvisa/persistence/IVehiculoDAO.class
+pe/edu/utp/transvisa/appproyectointegrador1grupo1/JakartaRestConfiguration.class
+pe/edu/utp/transvisa/presentation/Main.class
+pe/edu/utp/transvisa/persistence/VehiculoDAOMock.class
+pe/edu/utp/transvisa/domain/Vehiculo.class
+pe/edu/utp/transvisa/business/VehiculoService.class
