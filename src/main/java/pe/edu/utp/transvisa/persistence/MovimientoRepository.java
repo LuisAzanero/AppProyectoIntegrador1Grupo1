@@ -4,15 +4,18 @@
  */
 package pe.edu.utp.transvisa.persistence;
 
-import pe.edu.utp.transvisa.domain.Vehiculo;
+import java.math.BigDecimal;
+import pe.edu.utp.transvisa.domain.MovimientoGarita;
 
 /**
  *
  * @author luisazanero
  */
-public interface IVehiculoDAO {
+public interface MovimientoRepository {
 
-    void guardar(Vehiculo vehiculo);
+    void guardar(MovimientoGarita movimiento);
 
-    Vehiculo buscarPorPlaca(String placa);
+    boolean tieneMantenimientoAbierto(int idVehiculo);
+
+    BigDecimal obtenerUltimoKilometraje(int idVehiculo);
 }

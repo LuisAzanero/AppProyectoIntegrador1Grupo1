@@ -4,36 +4,32 @@
  */
 package pe.edu.utp.transvisa.domain;
 
+import java.math.BigDecimal;
+import java.security.Timestamp;
+
 /**
  *
  * @author luisazanero
  */
 public class Vehiculo {
 
-    private long id;
+    private int idVehiculo;
     private String placa;
     private String marca;
-    private double kilometrajeActual;
+    private String modelo;
+    private BigDecimal kilometrajeActual;
     private String estadoOperativo;
+    private Timestamp fechaCreacion;
 
     public Vehiculo() {
     }
 
-    public Vehiculo(long id, String placa, String marca, double kilometrajeActual, String estadoOperativo) {
-        this.id = id;
-        this.placa = placa;
-        this.marca = marca;
-        this.kilometrajeActual = kilometrajeActual;
-        this.estadoOperativo = estadoOperativo;
+    public int getIdVehiculo() {
+        return idVehiculo;
     }
 
-    // Getters y Setters de todos los atributos
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public void setIdVehiculo(int idVehiculo) {
+        this.idVehiculo = idVehiculo;
     }
 
     public String getPlaca() {
@@ -52,11 +48,19 @@ public class Vehiculo {
         this.marca = marca;
     }
 
-    public double getKilometrajeActual() {
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public BigDecimal getKilometrajeActual() {
         return kilometrajeActual;
     }
 
-    public void setKilometrajeActual(double kilometrajeActual) {
+    public void setKilometrajeActual(BigDecimal kilometrajeActual) {
         this.kilometrajeActual = kilometrajeActual;
     }
 
@@ -66,6 +70,14 @@ public class Vehiculo {
 
     public void setEstadoOperativo(String estadoOperativo) {
         this.estadoOperativo = estadoOperativo;
+    }
+
+    public Timestamp getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Timestamp fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
 
 }
