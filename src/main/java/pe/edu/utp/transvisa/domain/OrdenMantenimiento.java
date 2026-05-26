@@ -13,9 +13,9 @@ public class OrdenMantenimiento {
     private int idOrden;
     private int idVehiculo;
     private int idUsuario;
-    private String tipoMantenimiento; // PREVENTIVO / CORRECTIVO
+    private String tipoMantenimiento; // Preventivo / Correctivo
     private String descripcion;
-    private String estadoOrden;      // ABIERTA / CERRADA
+    private String estadoOrden;      // Abierta / Cerrada
     private Timestamp fechaInicio;
     private Timestamp fechaFin;
     private Timestamp fechaCreacion;

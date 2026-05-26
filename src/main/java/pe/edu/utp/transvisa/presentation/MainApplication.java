@@ -31,7 +31,7 @@ public class MainApplication {
         MovimientoGarita movInvalido = new MovimientoGarita();
         movInvalido.setIdVehiculo(2);
         movInvalido.setIdUsuario(1);
-        movInvalido.setTipoOperacion("SALIDA");
+        movInvalido.setTipoOperacion("Entrada");
         movInvalido.setKilometrajeRegistro(new BigDecimal("155000.00"));
 
         try {

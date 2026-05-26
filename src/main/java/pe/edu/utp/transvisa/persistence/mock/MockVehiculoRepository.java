@@ -21,7 +21,7 @@ public class MockVehiculoRepository implements VehiculoRepository {
         vehiculoSimulado.setPlaca("BYF-398");
         vehiculoSimulado.setMarca("Hyundai");
         vehiculoSimulado.setModelo("Venu");
-        vehiculoSimulado.setKilometrajeActual(new BigDecimal("10000"));
+        vehiculoSimulado.setKilometrajeActual(new BigDecimal("30000"));
         vehiculoSimulado.setEstadoOperativo("Disponible");
         return vehiculoSimulado;
     }
