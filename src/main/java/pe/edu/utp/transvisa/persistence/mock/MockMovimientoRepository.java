@@ -26,6 +26,6 @@ public class MockMovimientoRepository implements MovimientoRepository {
 
     @Override
     public BigDecimal obtenerUltimoKilometraje(int idVehiculo) {
-        return new BigDecimal("10000"); 
+        return new BigDecimal("150000.00"); 
     }
 }

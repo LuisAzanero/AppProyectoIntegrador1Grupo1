@@ -12,7 +12,6 @@ import pe.edu.utp.transvisa.persistence.VehiculoRepository;
 import pe.edu.utp.transvisa.persistence.mock.MockMovimientoRepository;
 import pe.edu.utp.transvisa.persistence.mock.MockVehiculoRepository;
 
-
 /**
  *
  * @author luisazanero
@@ -20,25 +19,27 @@ import pe.edu.utp.transvisa.persistence.mock.MockVehiculoRepository;
 public class MainApplication {
 
     public static void main(String[] args) {
-        // 1. Se crean los componentes de infraestructura (Mocks temporales)
+        // Data en duro
         MovimientoRepository movRepo = new MockMovimientoRepository();
-        VehiculoRepository vehRepo = new MockVehiculoRepository(); // Clase mock simulada
+        VehiculoRepository vehRepo = new MockVehiculoRepository(); 
 
-        // 2. INYECCIÓN POR CONSTRUCTOR: Se le entregan las dependencias al servicio
         MovimientoService servicio = new MovimientoService(movRepo, vehRepo);
 
-        // CASO DE PRUEBA 1: Intento de salida de vehículo bloqueado en taller (idVehiculo = 2)
         MovimientoGarita movInvalido = new MovimientoGarita();
         movInvalido.setIdVehiculo(2);
         movInvalido.setIdUsuario(1);
-        movInvalido.setTipoOperacion("SALIDA");
-        movInvalido.setKilometrajeRegistro(new BigDecimal("155000.00"));
+        movInvalido.setTipoOperacion("Entrada");
+        movInvalido.setKilometrajeRegistro(new BigDecimal("120000.00"));
 
         try {
-            System.out.println("Intentando despachar vehículo en taller...");
+            System.out.println("Intentando registrar entrada con kilometraje alterado...");
             servicio.procesarRegistroGarita(movInvalido);
+            System.out.println("¡Alerta! El sistema permitió un kilometraje menor.");
         } catch (Exception e) {
-            System.out.println("Respuesta del Sistema: " + e.getMessage());
+            // Aquí capturamos la excepción que arroja Preconditions de Guava
+            System.out.println("\n[RESPUESTA DEL SISTEMA - DETECTADO POR GOOGLE GUAVA]");
+            System.out.println("Tipo de error: " + e.getClass().getName());
+            System.out.println("Mensaje: " + e.getMessage());
         }
     }
 }
