@@ -1,67 +1,58 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package pe.edu.utp.transvisa.business;
+
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.math.BigDecimal;
 import pe.edu.utp.transvisa.domain.MovimientoGarita;
 import pe.edu.utp.transvisa.domain.Vehiculo;
 import pe.edu.utp.transvisa.persistence.MovimientoRepository;
 import pe.edu.utp.transvisa.persistence.VehiculoRepository;
 
-/**
- *
- * @author luisazanero
- */
 public class MovimientoService {
-private final MovimientoRepository movimientoRepository;
+    
+    private static final Logger log = LoggerFactory.getLogger(MovimientoService.class);
+    
+    private final MovimientoRepository movimientoRepository;
     private final VehiculoRepository vehiculoRepository;
 
-    // Constructor de inyección
     public MovimientoService(MovimientoRepository movimientoRepository, VehiculoRepository vehiculoRepository) {
         this.movimientoRepository = movimientoRepository;
         this.vehiculoRepository = vehiculoRepository;
+        log.info("MovimientoService inicializado correctamente");
     }
 
     public void procesarRegistroGarita(MovimientoGarita movimiento) throws Exception {
-        // --- VALIDACIONES INICIALES CON GUAVA ---
-        // Asegura que el objeto no sea nulo antes de procesar
-        Preconditions.checkNotNull(movimiento, "Error: El registro de movimiento no puede ser nulo.");
-        // Asegura que el tipo de operación contenga texto válido
-        Preconditions.checkArgument(!Strings.isNullOrEmpty(movimiento.getTipoOperacion()), "Error: El tipo de operación es obligatorio.");
-
-        // 1. Validación de Kilometraje usando Guava (Regla A)
-       BigDecimal ultimoKm = movimientoRepository.obtenerUltimoKilometraje(movimiento.getIdVehiculo());
+        log.info("Procesando movimiento para vehiculo ID: {}", movimiento.getIdVehiculo());
         
-        // Guava evalúa la condición; si es falsa, lanza un IllegalArgumentException automáticamente
+        Preconditions.checkNotNull(movimiento, "Error: El registro de movimiento no puede ser nulo.");
+        Preconditions.checkArgument(!Strings.isNullOrEmpty(movimiento.getTipoOperacion()), "Error: El tipo de operacion es obligatorio.");
+
+        BigDecimal ultimoKm = movimientoRepository.obtenerUltimoKilometraje(movimiento.getIdVehiculo());
+        log.debug("Ultimo kilometraje registrado: {}", ultimoKm);
+        
         Preconditions.checkArgument(
             movimiento.getKilometrajeRegistro().compareTo(ultimoKm) >= 0,
-            "Error: El kilometraje ingresado es menor al último registrado (%s km).", 
+            "Error: El kilometraje ingresado es menor al ultimo registrado (%s km).", 
             ultimoKm
         );
 
-        // 2. Regla de Negocio Crítica: Bloqueo por Taller si intenta salir (Regla B)
-        // CORRECCIÓN: Usamos equalsIgnoreCase para evitar errores si viene "Salida" o "SALIDA"
         if (movimiento.getTipoOperacion().equalsIgnoreCase("SALIDA")) {
             if (movimientoRepository.tieneMantenimientoAbierto(movimiento.getIdVehiculo())) {
-                throw new Exception("BLOQUEO DE DESPACHO: El vehículo tiene una orden de mantenimiento ABIERTA en taller.");
+                log.error("BLOQUEO DE DESPACHO: Vehiculo {} tiene mantenimiento abierto", movimiento.getIdVehiculo());
+                throw new Exception("BLOQUEO DE DESPACHO: El vehiculo tiene una orden de mantenimiento ABIERTA en taller.");
             }
         }
 
-        // 3. Guardar el movimiento si pasa las reglas
         movimientoRepository.guardar(movimiento);
+        log.info("Movimiento guardado exitosamente");
 
-        // 4. Actualizar el estado del Vehículo en consecuencia
         Vehiculo vehiculo = vehiculoRepository.buscarPorId(movimiento.getIdVehiculo());
-        
-        // Validamos que el vehículo exista en nuestro repositorio antes de mutarlo
-        Preconditions.checkNotNull(vehiculo, "Error: El vehículo con ID %s no existe.", movimiento.getIdVehiculo());
+        Preconditions.checkNotNull(vehiculo, "Error: El vehiculo con ID %s no existe.", movimiento.getIdVehiculo());
         
         vehiculo.setKilometrajeActual(movimiento.getKilometrajeRegistro());
 
-        // CORRECCIÓN: Ajustado a ignoreCase para que haga match perfecto con tu MainApplication ("Entrada")
         if (movimiento.getTipoOperacion().equalsIgnoreCase("ENTRADA")) {
             vehiculo.setEstadoOperativo("Disponible");
         } else {
@@ -69,5 +60,6 @@ private final MovimientoRepository movimientoRepository;
         }
 
         vehiculoRepository.actualizarEstadoYKilometraje(vehiculo);
+        log.info("Vehiculo {} actualizado - Estado: {}, KM: {}", vehiculo.getIdVehiculo(), vehiculo.getEstadoOperativo(), vehiculo.getKilometrajeActual());
     }
 }
