@@ -32,6 +32,7 @@ public class MainApplication {
         movInvalido.setKilometrajeRegistro(new BigDecimal("120000.00"));
 
         try {
+            //Test semana 12
             System.out.println("Intentando registrar entrada con kilometraje alterado...");
             servicio.procesarRegistroGarita(movInvalido);
             System.out.println("¡Alerta! El sistema permitió un kilometraje menor.");
