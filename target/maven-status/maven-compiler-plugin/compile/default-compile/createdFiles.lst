@@ -1,9 +1,0 @@
-pe/edu/utp/transvisa/persistence/mock/MockMovimientoRepository.class
-pe/edu/utp/transvisa/presentation/MainApplication.class
-pe/edu/utp/transvisa/persistence/mock/MockVehiculoRepository.class
-pe/edu/utp/transvisa/persistence/VehiculoRepository.class
-pe/edu/utp/transvisa/domain/MovimientoGarita.class
-pe/edu/utp/transvisa/persistence/MovimientoRepository.class
-pe/edu/utp/transvisa/domain/Vehiculo.class
-pe/edu/utp/transvisa/domain/OrdenMantenimiento.class
-pe/edu/utp/transvisa/business/MovimientoService.class
