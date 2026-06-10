@@ -96,7 +96,7 @@
                         <input type="hidden" name="idVehiculo" id="formId">
                         <div class="mb-3">
                             <label class="form-label">Placa</label>
-                            <input type="text" name="placa" id="formPlaca" class="form-control" placeholder="Ej: F3V-820" required>
+                            <input type="text" name="placa" id="formPlaca" class="form-control" placeholder="Ejemplo: F3V-820" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Marca</label>
