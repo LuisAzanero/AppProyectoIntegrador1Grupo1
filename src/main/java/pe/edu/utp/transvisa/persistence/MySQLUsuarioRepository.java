@@ -10,7 +10,7 @@ public class MySQLUsuarioRepository implements UsuarioRepository {
 
     @Override
     public Usuario buscarPorUsername(String username) throws SQLException {
-        // RNF-03: Consulta parametrizada eficiente para evitar SQL Injection (Seguridad)
+        
         String sql = "SELECT id_usuario, username, password_hash, nombre, rol, estado FROM usuarios WHERE username = ? AND estado = 1";
         
         try (Connection conn = ConexionBD.getConnection();

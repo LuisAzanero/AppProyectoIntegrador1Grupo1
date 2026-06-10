@@ -15,48 +15,48 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
+//Redireccionamiento al login
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
     private static final Logger logger = LoggerFactory.getLogger(LoginServlet.class);
-  
+
     private final UsuarioRepository usuarioRepository = new MySQLUsuarioRepository();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        
+
         String txtUsuario = request.getParameter("username");
-        String txtClave = request.getParameter("password"); 
+        String txtClave = request.getParameter("password");
 
         try {
-            
+            // Validaciones de formato de entrada usando Google Guava
             Preconditions.checkArgument(!Strings.isNullOrEmpty(txtUsuario), "El nombre de usuario es obligatorio.");
             Preconditions.checkArgument(!Strings.isNullOrEmpty(txtClave), "La contraseña es obligatoria.");
 
-          
+            // Consultamos en la base de datos.
             Usuario usuarioDB = usuarioRepository.buscarPorUsername(txtUsuario);
 
-           
-            if (usuarioDB != null && usuarioDB.getPasswordHash().equals("1234")) { 
-      
-                
+            // Validamos el passowrd en el banco
+            if (usuarioDB != null && usuarioDB.getPasswordHash().equals(txtClave)) {
+
                 logger.info("Acceso concedido desde la Base de Datos para el usuario: {}", txtUsuario);
-    
+
                 HttpSession session = request.getSession();
                 session.setAttribute("idUsuarioLogueado", usuarioDB.getIdUsuario());
                 session.setAttribute("usuarioLogueado", usuarioDB.getNombre());
                 session.setAttribute("rolUsuario", usuarioDB.getRol());
 
-            
+                // Redirección segura al Dashboard si el login es exitoso,cn cotrario, mostramos unmensja de erroren la vista
                 response.sendRedirect("dashboard");
             } else {
                 logger.warn("Fallo de inicio de sesión en BD para el usuario: {}", txtUsuario);
