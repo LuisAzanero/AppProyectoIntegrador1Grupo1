@@ -19,3 +19,4 @@ pe\edu\utp\transvisa\domain\Vehiculo.class
 pe\edu\utp\transvisa\presentation\UsuarioServlet.class
 pe\edu\utp\transvisa\persistence\MySQLUsuarioRepository.class
 pe\edu\utp\transvisa\persistence\MySQLVehiculoRepository.class
+pe\edu\utp\transvisa\presentation\ReporteVehiculoServlet.class
