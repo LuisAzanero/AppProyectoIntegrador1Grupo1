@@ -32,9 +32,29 @@
         <div class="container-fluid px-4 py-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2 class="text-secondary fw-bold mb-0">Mantenimiento de Usuarios</h2>
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalUsuario" onclick="limpiarFormulario()">
-                    ➕ Nuevo Usuario
-                </button>
+                <div class="d-flex gap-2">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownUsuarios" data-bs-toggle="dropdown" aria-expanded="false">
+                            📥 Exportar Data
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="dropdownUsuarios">
+                            <li>
+                                <a class="dropdown-item fw-medium text-success" href="usuarios/exportar?tipo=excel">
+                                    🟢 Descargar Excel (.xlsx)
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item fw-medium text-info" href="usuarios/exportar?tipo=csv">
+                                    🔵 Descargar CSV (.csv)
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalUsuario" onclick="limpiarFormulario()">
+                        ➕ Nuevo Usuario
+                    </button>
+                </div>
             </div>
 
             <div class="card border-0 shadow-sm">

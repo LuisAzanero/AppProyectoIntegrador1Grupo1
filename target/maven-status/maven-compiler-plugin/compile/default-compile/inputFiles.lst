@@ -2,6 +2,7 @@ C:\GitHub\Integrador\AppProyectoIntegrador1Grupo1\src\main\java\pe\edu\utp\trans
 C:\GitHub\Integrador\AppProyectoIntegrador1Grupo1\src\main\java\pe\edu\utp\transvisa\persistence\UsuarioRepository.java
 C:\GitHub\Integrador\AppProyectoIntegrador1Grupo1\src\main\java\pe\edu\utp\transvisa\domain\OrdenMantenimiento.java
 C:\GitHub\Integrador\AppProyectoIntegrador1Grupo1\src\main\java\pe\edu\utp\transvisa\persistence\MySQLVehiculoRepository.java
+C:\GitHub\Integrador\AppProyectoIntegrador1Grupo1\src\main\java\pe\edu\utp\transvisa\presentation\ReporteUsuarioServlet.java
 C:\GitHub\Integrador\AppProyectoIntegrador1Grupo1\src\main\java\pe\edu\utp\transvisa\presentation\DashboardServlet.java
 C:\GitHub\Integrador\AppProyectoIntegrador1Grupo1\src\main\java\pe\edu\utp\transvisa\persistence\ConexionBD.java
 C:\GitHub\Integrador\AppProyectoIntegrador1Grupo1\src\main\java\pe\edu\utp\transvisa\persistence\MovimientoRepository.java
@@ -16,4 +17,5 @@ C:\GitHub\Integrador\AppProyectoIntegrador1Grupo1\src\main\java\pe\edu\utp\trans
 C:\GitHub\Integrador\AppProyectoIntegrador1Grupo1\src\main\java\pe\edu\utp\transvisa\presentation\SupervisorServlet.java
 C:\GitHub\Integrador\AppProyectoIntegrador1Grupo1\src\main\java\pe\edu\utp\transvisa\domain\Usuario.java
 C:\GitHub\Integrador\AppProyectoIntegrador1Grupo1\src\main\java\pe\edu\utp\transvisa\presentation\UsuarioServlet.java
+C:\GitHub\Integrador\AppProyectoIntegrador1Grupo1\src\main\java\pe\edu\utp\transvisa\presentation\ReporteVehiculoServlet.java
 C:\GitHub\Integrador\AppProyectoIntegrador1Grupo1\src\main\java\pe\edu\utp\transvisa\presentation\MainApplication.java

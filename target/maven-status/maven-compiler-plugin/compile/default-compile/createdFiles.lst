@@ -1,6 +1,7 @@
 pe\edu\utp\transvisa\persistence\VehiculoRepository.class
 pe\edu\utp\transvisa\persistence\mock\MockMovimientoRepository.class
 pe\edu\utp\transvisa\business\MovimientoService.class
+pe\edu\utp\transvisa\presentation\ReporteUsuarioServlet.class
 pe\edu\utp\transvisa\presentation\VehiculoServlet.class
 pe\edu\utp\transvisa\presentation\GaritaServlet.class
 pe\edu\utp\transvisa\presentation\MecanicoServlet.class
