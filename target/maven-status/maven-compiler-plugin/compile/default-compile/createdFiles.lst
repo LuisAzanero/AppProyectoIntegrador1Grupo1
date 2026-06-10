@@ -12,4 +12,5 @@ pe\edu\utp\transvisa\persistence\mock\MockVehiculoRepository.class
 pe\edu\utp\transvisa\presentation\DashboardServlet.class
 pe\edu\utp\transvisa\presentation\MainApplication.class
 pe\edu\utp\transvisa\domain\Vehiculo.class
+pe\edu\utp\transvisa\presentation\UsuarioServlet.class
 pe\edu\utp\transvisa\persistence\MySQLUsuarioRepository.class

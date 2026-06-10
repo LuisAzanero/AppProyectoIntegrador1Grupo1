@@ -9,6 +9,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TRANSVISA - Dashboard de Control Operativo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -17,11 +18,23 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-3">
         <div class="container-fluid px-4">
             <a class="navbar-brand fw-bold text-uppercase tracking-wider" href="#">TRANSVISA E.I.R.L.</a>
-            <div class="d-flex align-items-center">
-                <span class="navbar-text text-white me-3">
-                    Usuario Contectado: <strong class="text-info"><%= session.getAttribute("usuarioLogueado") != null ? session.getAttribute("usuarioLogueado") : "Sesión Temporal" %></strong>
-                </span>
-                <a href="login" class="btn btn-sm btn-outline-danger px-3">Cerrar Sesión</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav me-auto">
+                    <a class="nav-link active fw-semibold" aria-current="page" href="dashboard">📈 Dashboard</a>
+                    <a class="nav-link text-white-50" href="usuarios">👥 Mantenimiento Usuarios</a>
+                </div>
+                
+                <div class="d-flex align-items-center mt-3 mt-lg-0">
+                    <span class="navbar-text text-white me-3">
+                        Usuario Conectado: <strong class="text-info"><%= session.getAttribute("usuarioLogueado") != null ? session.getAttribute("usuarioLogueado") : "Sesión Temporal" %></strong>
+                    </span>
+                    <a href="login" class="btn btn-sm btn-outline-danger px-3">Cerrar Sesión</a>
+                </div>
             </div>
         </div>
     </nav>
@@ -79,5 +92,7 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
