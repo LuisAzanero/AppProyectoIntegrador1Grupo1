@@ -49,15 +49,51 @@ public class LoginServlet extends HttpServlet {
             // Validamos el passowrd en el banco
             if (usuarioDB != null && usuarioDB.getPasswordHash().equals(txtClave)) {
 
-                logger.info("Acceso concedido desde la Base de Datos para el usuario: {}", txtUsuario);
+                logger.info("Acceso concedido para el usuario: {} con Rol: {}", txtUsuario, usuarioDB.getRol());
 
+                // Inicializar sesión segura
                 HttpSession session = request.getSession();
                 session.setAttribute("idUsuarioLogueado", usuarioDB.getIdUsuario());
                 session.setAttribute("usuarioLogueado", usuarioDB.getNombre());
                 session.setAttribute("rolUsuario", usuarioDB.getRol());
 
-                // Redirección segura al Dashboard si el login es exitoso,cn cotrario, mostramos unmensja de erroren la vista
-                response.sendRedirect("dashboard");
+                // Redireccionar segun el Roles
+                String rol = usuarioDB.getRol();
+
+                switch (rol) {
+                    case "Administrador":
+                    case "Gerente":
+                        // dashboard principal
+                        response.sendRedirect("dashboard");
+                        break;
+
+                    case "Supervisor de flota":
+                        // portal del supervidor
+                        response.sendRedirect("supervisor/panel");
+                        break;
+
+                    case "Tecnico Mecanico":
+                        // Portal mercanico
+                        response.sendRedirect("mecanico/tareas");
+                        break;
+
+                    case "Conductor":
+                        // portal el conductor
+                        response.sendRedirect("conductor/ruta");
+                        break;
+
+                    case "Operador de Garita":
+                        // portal garita
+                        response.sendRedirect("garita/control");
+                        break;
+
+                    default:
+                        logger.warn("Usuario con rol no mapeado intentó ingresar: {}", rol);
+                        request.setAttribute("errorAutenticacion", "Tu rol no tiene una vista asignada en el sistema.");
+                        request.getRequestDispatcher("login.jsp").forward(request, response);
+                        break;
+                }
+
             } else {
                 logger.warn("Fallo de inicio de sesión en BD para el usuario: {}", txtUsuario);
                 request.setAttribute("errorAutenticacion", "Usuario o contraseña incorrectos en la base de datos.");

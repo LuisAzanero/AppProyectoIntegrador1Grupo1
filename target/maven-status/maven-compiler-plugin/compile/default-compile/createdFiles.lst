@@ -2,12 +2,16 @@ pe\edu\utp\transvisa\persistence\VehiculoRepository.class
 pe\edu\utp\transvisa\persistence\mock\MockMovimientoRepository.class
 pe\edu\utp\transvisa\business\MovimientoService.class
 pe\edu\utp\transvisa\presentation\VehiculoServlet.class
+pe\edu\utp\transvisa\presentation\GaritaServlet.class
+pe\edu\utp\transvisa\presentation\MecanicoServlet.class
+pe\edu\utp\transvisa\presentation\SupervisorServlet.class
 pe\edu\utp\transvisa\domain\OrdenMantenimiento.class
 pe\edu\utp\transvisa\persistence\MovimientoRepository.class
 pe\edu\utp\transvisa\domain\MovimientoGarita.class
 pe\edu\utp\transvisa\domain\Usuario.class
 pe\edu\utp\transvisa\persistence\ConexionBD.class
 pe\edu\utp\transvisa\persistence\UsuarioRepository.class
+pe\edu\utp\transvisa\presentation\ConductorServlet.class
 pe\edu\utp\transvisa\presentation\LoginServlet.class
 pe\edu\utp\transvisa\presentation\DashboardServlet.class
 pe\edu\utp\transvisa\presentation\MainApplication.class
