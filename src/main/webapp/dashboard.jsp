@@ -1,5 +1,5 @@
 <%-- 
-    Document   : newjsp
+    Document   : dashbord
     Created on : 9 jun. 2026, 19:08:37
     Author     : luis.azanero
 --%>
@@ -16,10 +16,10 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-3">
         <div class="container-fluid px-4">
-            <a class="navbar-brand fw-bold text-uppercase tracking-wider" href="#">TRANSVISA Fleet</a>
+            <a class="navbar-brand fw-bold text-uppercase tracking-wider" href="#">TRANSVISA E.I.R.L.</a>
             <div class="d-flex align-items-center">
                 <span class="navbar-text text-white me-3">
-                    Operador activo: <strong class="text-info"><%= session.getAttribute("usuarioLogueado") != null ? session.getAttribute("usuarioLogueado") : "Sesión Temporal" %></strong>
+                    Usuario Contectado: <strong class="text-info"><%= session.getAttribute("usuarioLogueado") != null ? session.getAttribute("usuarioLogueado") : "Sesión Temporal" %></strong>
                 </span>
                 <a href="login" class="btn btn-sm btn-outline-danger px-3">Cerrar Sesión</a>
             </div>
