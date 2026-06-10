@@ -26,7 +26,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="navbar-nav me-auto">
                     <a class="nav-link active fw-semibold" aria-current="page" href="dashboard">📈 Dashboard</a>
-                    <a class="nav-link text-white-50" href="usuarios">👥 Mantenimiento Usuarios</a>
+                    <a class="nav-link text-white-50" href="usuarios">👥 Usuarios</a>
+                    <a class="nav-link text-white-50" href="vehiculos">🚚 Vehículos</a>
                 </div>
                 
                 <div class="d-flex align-items-center mt-3 mt-lg-0">

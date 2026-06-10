@@ -1,18 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package pe.edu.utp.transvisa.persistence;
 
 import pe.edu.utp.transvisa.domain.Vehiculo;
+import java.sql.SQLException;
+import java.util.List;
 
-/**
- *
- * @author luisazanero
- */
 public interface VehiculoRepository {
 
-    Vehiculo buscarPorId(int idVehiculo);
+    List<Vehiculo> listarTodos() throws SQLException;
 
-    void actualizarEstadoYKilometraje(Vehiculo vehiculo);
+    void registrar(Vehiculo vehiculo) throws SQLException;
+
+    void actualizarEstadoYKilometraje(Vehiculo vehiculo) throws SQLException;
+
+    void eliminar(int idVehiculo) throws SQLException;
+
+    Vehiculo buscarPorId(int idVehiculo); 
 }

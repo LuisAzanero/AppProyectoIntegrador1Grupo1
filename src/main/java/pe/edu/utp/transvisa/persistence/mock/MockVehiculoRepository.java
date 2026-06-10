@@ -12,7 +12,7 @@ import pe.edu.utp.transvisa.persistence.VehiculoRepository;
  *
  * @author luisazanero
  */
-public class MockVehiculoRepository implements VehiculoRepository {
+/*public class MockVehiculoRepository implements VehiculoRepository {
 
     @Override
     public Vehiculo buscarPorId(int idVehiculo) {
@@ -42,4 +42,4 @@ public class MockVehiculoRepository implements VehiculoRepository {
         System.out.println(" -> Nuevo Km: " + vehiculo.getKilometrajeActual() + " km.");
         System.out.println(" -> Nuevo Estado Operativo: " + vehiculo.getEstadoOperativo());
     }
-}
+}*/

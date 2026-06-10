@@ -1,29 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package pe.edu.utp.transvisa.domain;
 
 import java.math.BigDecimal;
-import java.security.Timestamp;
 
-/**
- *
- * @author luisazanero
- */
 public class Vehiculo {
 
     private int idVehiculo;
     private String placa;
     private String marca;
     private String modelo;
-    private BigDecimal kilometrajeActual;
+    private BigDecimal kilometrajeActual; 
     private String estadoOperativo;
-    private Timestamp fechaCreacion;
 
-    public Vehiculo() {
-    }
-
+    // Getters y Setters
     public int getIdVehiculo() {
         return idVehiculo;
     }
@@ -71,13 +59,4 @@ public class Vehiculo {
     public void setEstadoOperativo(String estadoOperativo) {
         this.estadoOperativo = estadoOperativo;
     }
-
-    public Timestamp getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public void setFechaCreacion(Timestamp fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
-
 }

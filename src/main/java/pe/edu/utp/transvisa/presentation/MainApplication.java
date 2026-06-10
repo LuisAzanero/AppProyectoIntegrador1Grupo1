@@ -10,7 +10,7 @@ import pe.edu.utp.transvisa.domain.MovimientoGarita;
 import pe.edu.utp.transvisa.persistence.MovimientoRepository;
 import pe.edu.utp.transvisa.persistence.VehiculoRepository;
 import pe.edu.utp.transvisa.persistence.mock.MockMovimientoRepository;
-import pe.edu.utp.transvisa.persistence.mock.MockVehiculoRepository;
+/*import pe.edu.utp.transvisa.persistence.mock.MockVehiculoRepository;
 
 /**
  *
@@ -21,7 +21,7 @@ public class MainApplication {
     public static void main(String[] args) {
         // Data en duro
         MovimientoRepository movRepo = new MockMovimientoRepository();
-        VehiculoRepository vehRepo = new MockVehiculoRepository(); 
+        /*VehiculoRepository vehRepo = new MockVehiculoRepository(); 
 
         MovimientoService servicio = new MovimientoService(movRepo, vehRepo);
 
@@ -41,6 +41,6 @@ public class MainApplication {
             System.out.println("\n[RESPUESTA DEL SISTEMA - DETECTADO POR GOOGLE GUAVA]");
             System.out.println("Tipo de error: " + e.getClass().getName());
             System.out.println("Mensaje: " + e.getMessage());
-        }
+        }*/
     }
 }
