@@ -13,6 +13,7 @@
         <meta charset="UTF-8">
         <title>TRANSVISA - Mantenimiento de Usuarios</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
     </head>
     <body class="bg-light">
 
@@ -22,6 +23,7 @@
                 <div class="navbar-nav me-auto">
                     <a class="nav-link" href="dashboard">Dashboard</a>
                     <a class="nav-link active" href="usuarios">Usuarios</a>
+                    <a class="nav-link" href="vehiculos">Vehículos</a>
                 </div>
                 <span class="navbar-text text-white">
                     Operador: <strong><%= session.getAttribute("usuarioLogueado")%></strong>
@@ -109,7 +111,7 @@
                             <input type="hidden" name="idUsuario" id="formId">
                             <div class="mb-3">
                                 <label class="form-label">DNI</label>
-                                <input type="text" name="dni" id="formDni" class="form-control" required maxlength="8" required>
+                                <input type="text" name="dni" id="formDni" class="form-control" required maxlength="8">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Nombre Completo</label>
@@ -133,7 +135,6 @@
                                     <option value="Conductor">Conductor</option>
                                     <option value="Administrador">Administrador</option>
                                     <option value="Operador de Garita">Operador de Garita</option>
-                                        
                                 </select>
                             </div>
                         </div>
@@ -147,29 +148,42 @@
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        
         <script>
-                                        function limpiarFormulario() {
-                                            document.getElementById('formId').value = '';
-                                            document.getElementById('formDni').value = '';
-                                            document.getElementById('formNombre').value = '';
-                                            document.getElementById('formUsername').value = '';
-                                            document.getElementById('formClave').value = '';
-                                            document.getElementById('formRol').value = 'OPERADOR';
-                                            document.getElementById('modalTitle').innerText = 'Registrar Operador';
-                                        }
+            function limpiarFormulario() {
+                document.getElementById('formId').value = '';
+                document.getElementById('formDni').value = '';
+                document.getElementById('formNombre').value = '';
+                document.getElementById('formUsername').value = '';
+                document.getElementById('formClave').value = '';
+                document.getElementById('formRol').value = '';
+                document.getElementById('modalTitle').innerText = 'Registrar Operador';
+            }
 
-                                        function cargarDatosEditar(id, dni, nombre, user, clave, rol) {
-                                            document.getElementById('formId').value = id;
-                                            document.getElementById('formDni').value = dni;
-                                            document.getElementById('formNombre').value = nombre;
-                                            document.getElementById('formUsername').value = user;
-                                            document.getElementById('formClave').value = clave;
-                                            document.getElementById('formRol').value = rol;
-                                            document.getElementById('modalTitle').innerText = 'Modificar Datos de Usuario';
+            function cargarDatosEditar(id, dni, nombre, user, clave, rol) {
+                document.getElementById('formId').value = id;
+                document.getElementById('formDni').value = dni;
+                document.getElementById('formNombre').value = nombre;
+                document.getElementById('formUsername').value = user;
+                document.getElementById('formClave').value = clave;
+                document.getElementById('formRol').value = rol;
+                document.getElementById('modalTitle').innerText = 'Modificar Datos de Usuario';
 
-                                            var modal = new bootstrap.Modal(document.getElementById('modalUsuario'));
-                                            modal.show();
-                                        }
+                var modal = new bootstrap.Modal(document.getElementById('modalUsuario'));
+                modal.show();
+            }
+
+            // 🛡️ Lógica para disparar SweetAlert2 si el Servlet detecta DNI duplicado
+            <% if (request.getAttribute("errorDniDuplicado") != null) { %>
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Operación Inválida!',
+                    text: '<%= request.getAttribute("errorDniDuplicado") %>',
+                    confirmButtonColor: '#0d6efd',
+                    background: '#f8f9fa'
+                });
+            <% } %>
         </script>
     </body>
 </html>

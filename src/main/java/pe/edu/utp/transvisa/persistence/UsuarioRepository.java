@@ -21,4 +21,5 @@ public interface UsuarioRepository {
     void registrar(Usuario usuario) throws SQLException;
     void actualizar(Usuario usuario) throws SQLException;
     void eliminar(int idUsuario) throws SQLException;
+    boolean existeDni(String dni) throws java.sql.SQLException;
 }

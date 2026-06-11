@@ -14,5 +14,7 @@ public interface VehiculoRepository {
 
     void eliminar(int idVehiculo) throws SQLException;
 
-    Vehiculo buscarPorId(int idVehiculo); 
+    Vehiculo buscarPorId(int idVehiculo);
+
+    boolean existePlaca(String placa) throws java.sql.SQLException;
 }

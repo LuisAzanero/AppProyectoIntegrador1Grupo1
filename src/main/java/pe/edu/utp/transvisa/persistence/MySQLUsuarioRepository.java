@@ -93,4 +93,18 @@ public class MySQLUsuarioRepository implements UsuarioRepository {
         u.setEstado(rs.getBoolean("estado"));
         return u;
     }
+
+    @Override
+    public boolean existeDni(String dni) throws java.sql.SQLException {
+        String sql = "SELECT COUNT(*) FROM usuarios WHERE dni = ?";
+        try (Connection conn = ConexionBD.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, dni);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        }
+        return false;
+    }
 }

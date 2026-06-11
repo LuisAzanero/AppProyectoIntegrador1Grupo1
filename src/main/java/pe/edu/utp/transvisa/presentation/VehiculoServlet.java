@@ -78,11 +78,21 @@ public class VehiculoServlet extends HttpServlet {
             v.setEstadoOperativo(estadoOps);
 
             if (Strings.isNullOrEmpty(idStr)) {
+
+                if (vehiculoRepository.existePlaca(v.getPlaca())) {
+                    logger.warn("Bloqueo de inserción: La placa [{}] ya existe en la base de datos.", v.getPlaca());
+
+                    request.setAttribute("errorPlacaDuplicada", "La placa vehicular " + v.getPlaca() + " ya se encuentra registrada en la flota de TRANSVISA.");
+
+                    request.setAttribute("listaVehiculos", vehiculoRepository.listarTodos());
+                    request.getRequestDispatcher("vehiculos.jsp").forward(request, response);
+                    return; 
+                }
+
                 vehiculoRepository.registrar(v);
-                logger.info("Vehículo insertado: Placa [{}]", placa);
+                logger.info("Vehículo insertado de forma limpia: Placa [{}]", v.getPlaca());
             } else {
                 v.setIdVehiculo(Integer.parseInt(idStr));
-                //Llamamos al método correcto definido en tu interfaz y repositorio
                 vehiculoRepository.actualizarEstadoYKilometraje(v);
                 logger.info("Vehículo modificado ID: {}", idStr);
             }
@@ -92,7 +102,13 @@ public class VehiculoServlet extends HttpServlet {
         } catch (Exception e) {
             logger.error("Error al procesar formulario vehicular", e);
             request.setAttribute("error", e.getMessage());
-            doGet(request, response);
+            try {
+                request.setAttribute("listaVehiculos", vehiculoRepository.listarTodos());
+            } catch (Exception ex) {
+                logger.error("Error al recuperar lista en fallback vehicular", ex);
+            }
+            request.getRequestDispatcher("vehiculos.jsp").forward(request, response);
         }
+
     }
 }

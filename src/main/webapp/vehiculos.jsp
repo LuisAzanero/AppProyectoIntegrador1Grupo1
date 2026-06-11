@@ -13,6 +13,7 @@
         <meta charset="UTF-8">
         <title>TRANSVISA - Control de Flota</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
     </head>
     <body class="bg-light">
 
@@ -84,8 +85,9 @@
                                         if ("En Ruta".equals(v.getEstadoOperativo())) {
                                             badgeColor = "bg-info text-dark";
                                         }
-                                        if ("Inactivo".equals(v.getEstadoOperativo()))
+                                        if ("Inactivo".equals(v.getEstadoOperativo())) {
                                             badgeColor = "bg-danger";
+                                        }
                             %>
                             <tr>
                                 <td><%= v.getIdVehiculo()%></td>
@@ -155,6 +157,7 @@
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
                                         function limpiarFormulario() {
                                             document.getElementById('formId').value = '';
@@ -178,6 +181,15 @@
                                             var modal = new bootstrap.Modal(document.getElementById('modalVehiculo'));
                                             modal.show();
                                         }
+
+            <% if (request.getAttribute("errorPlacaDuplicada") != null) {%>
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: '¡Unidad Duplicada!',
+                                            text: '<%= request.getAttribute("errorPlacaDuplicada")%>',
+                                            confirmButtonColor: '#198754'
+                                        });
+            <% }%>
         </script>
     </body>
 </html>

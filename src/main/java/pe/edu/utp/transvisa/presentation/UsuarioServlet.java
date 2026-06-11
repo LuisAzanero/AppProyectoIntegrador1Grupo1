@@ -21,9 +21,9 @@ public class UsuarioServlet extends HttpServlet {
     private final UsuarioRepository usuarioRepository = new MySQLUsuarioRepository();
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("usuarioLogueado") == null) {
             response.sendRedirect("login");
@@ -51,7 +51,7 @@ public class UsuarioServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
 
@@ -63,25 +63,43 @@ public class UsuarioServlet extends HttpServlet {
         String rol = request.getParameter("rol");
 
         try {
+            // Validaciones defensivas iniciales usando Google Guava
             Preconditions.checkArgument(!Strings.isNullOrEmpty(dni), "El DNI es obligatorio.");
             Preconditions.checkArgument(!Strings.isNullOrEmpty(nombre), "El nombre es obligatorio.");
             Preconditions.checkArgument(!Strings.isNullOrEmpty(username), "El nombre de usuario es obligatorio.");
             Preconditions.checkArgument(!Strings.isNullOrEmpty(clave), "La contraseña es obligatoria.");
 
             Usuario u = new Usuario();
-            u.setDni(dni);
-            u.setNombre(nombre);
-            u.setUsername(username);
+            u.setDni(dni.trim());
+            u.setNombre(nombre.trim());
+            u.setUsername(username.trim());
             u.setPasswordHash(clave);
             u.setRol(rol);
 
+            // Determinar si es un nuevo o una actualizacion
             if (Strings.isNullOrEmpty(idStr)) {
+
+                // validamos dni duplicado
+                if (usuarioRepository.existeDni(u.getDni())) {
+                    logger.warn("Bloqueo de registro: El DNI {} ya existe en TRANSVISA.", u.getDni());
+
+                    //variable para el sweet alert de la vista
+                    request.setAttribute("errorDniDuplicado", "El DNI ingresado (" + u.getDni() + ") ya se encuentra registrado en el sistema.");
+
+                    
+                    request.setAttribute("listaUsuarios", usuarioRepository.listarTodos());
+                    request.getRequestDispatcher("usuarios.jsp").forward(request, response);
+                    return; 
+                }
+
                 usuarioRepository.registrar(u);
-                logger.info("Usuario registrado: {}", username);
+                logger.info("Usuario registrado exitosamente: {}", username);
+
             } else {
+                
                 u.setIdUsuario(Integer.parseInt(idStr));
                 usuarioRepository.actualizar(u);
-                logger.info("Usuario actualizado ID: {}", idStr);
+                logger.info("Usuario actualizado con éxito. ID: {}", idStr);
             }
 
             response.sendRedirect("usuarios");
@@ -89,7 +107,13 @@ public class UsuarioServlet extends HttpServlet {
         } catch (Exception e) {
             logger.error("Error en formulario de usuarios", e);
             request.setAttribute("error", e.getMessage());
-            doGet(request, response);
+            
+            try {
+                request.setAttribute("listaUsuarios", usuarioRepository.listarTodos());
+            } catch (Exception ex) {
+                logger.error("Error fatal al intentar recuperar la lista tras fallo", ex);
+            }
+            request.getRequestDispatcher("usuarios.jsp").forward(request, response);
         }
     }
 }
