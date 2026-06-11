@@ -109,7 +109,7 @@
                             <input type="hidden" name="idUsuario" id="formId">
                             <div class="mb-3">
                                 <label class="form-label">DNI</label>
-                                <input type="text" name="dni" id="formDni" class="form-control" required maxlength="8">
+                                <input type="text" name="dni" id="formDni" class="form-control" required maxlength="8" required>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Nombre Completo</label>
@@ -125,10 +125,15 @@
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Rol Operativo</label>
-                                <select name="rol" id="formRol" class="form-select">
-                                    <option value="ADMIN">ADMIN</option>
-                                    <option value="OPERADOR">OPERADOR</option>
-                                    <option value="MECANICO">MECANICO</option>
+                                <select name="rol" id="formRol" class="form-select" required>
+                                    <option value="">Seleccione Rol:</option>
+                                    <option value="Supervisor de flota">Supervisor de flota</option>
+                                    <option value="Tecnico Mecanico">Tecnico Mecanico</option>
+                                    <option value="Gerente">Gerente</option>
+                                    <option value="Conductor">Conductor</option>
+                                    <option value="Administrador">Administrador</option>
+                                    <option value="Operador de Garita">Operador de Garita</option>
+                                        
                                 </select>
                             </div>
                         </div>
