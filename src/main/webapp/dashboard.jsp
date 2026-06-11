@@ -43,7 +43,7 @@
     <div class="container-fluid px-4 py-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="text-secondary fw-bold mb-0">Panel de Control Gerencial</h2>
-            <span class="badge bg-primary px-3 py-2 fs-6 shadow-sm">Fase 3: Backend MySQL Operativo</span>
+            <span class="badge bg-primary px-3 py-2 fs-6 shadow-sm">Sistema Online</span>
         </div>
         
         <div class="row g-4 mb-4">
@@ -81,19 +81,107 @@
             </div>
         </div>
 
+        <div class="row g-4 mb-4">
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold text-secondary mb-3">Estado de Unidades</h5>
+                        <div style="position: relative; height:250px; width:100%">
+                            <canvas id="chartEstados"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="card border-0 shadow-sm h-100">
+                    <div class="card-body p-4">
+                        <h5 class="fw-bold text-secondary mb-3">Kilometraje Actual por Tracto (Control Preventivo)</h5>
+                        <div style="position: relative; height:250px; width:100%">
+                            <canvas id="chartKilometraje"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="card border-0 shadow-sm p-4">
                     <h5 class="fw-bold text-secondary mb-3">Cumplimiento del Plan de Mantenimiento (RF-13)</h5>
                     <div class="progress mb-3" style="height: 25px;">
                         <div class="progress-bar bg-info progress-bar-striped progress-bar-animated fw-bold" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
                     </div>
-                    <p class="text-muted small mb-0">Muestreo dinámico: Mantenimientos preventivos realizados a tiempo para evitar fallas mecánicas críticas en ruta.</p>
+                    <p class="text-muted small mb-0">Muestreo analítico: Porcentaje de mantenimientos preventivos ejecutados satisfactoriamente dentro del rango de tolerancia mecánica establecido.</p>
                 </div>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // Estados de flota
+        const ctxEstados = document.getElementById('chartEstados').getContext('2d');
+        new Chart(ctxEstados, {
+            type: 'doughnut',
+            data: {
+                labels: ['Disponibles', 'En Taller', 'En Ruta'],
+                datasets: [{
+                    data: [2, 1, 0], // Data dura estructurada para empate con tus KPIs
+                    backgroundColor: ['#198754', '#ffc107', '#0dcaf0'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        // kilomeraje de las unidades
+        const ctxKilometraje = document.getElementById('chartKilometraje').getContext('2d');
+        new Chart(ctxKilometraje, {
+            type: 'bar',
+            data: {
+                labels: ['V4X-912', 'F5T-204', 'A8B-311'], 
+                datasets: [{
+                    label: 'Kilómetros Recorridos (Km)',
+                    data: [124500, 89200, 210150], 
+                    backgroundColor: 'rgba(13, 110, 253, 0.85)',
+                    borderColor: 'rgb(13, 110, 253)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false 
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
