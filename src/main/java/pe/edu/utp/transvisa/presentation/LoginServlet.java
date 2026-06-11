@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
             Preconditions.checkArgument(!Strings.isNullOrEmpty(txtUsuario), "El nombre de usuario es obligatorio.");
             Preconditions.checkArgument(!Strings.isNullOrEmpty(txtClave), "La contraseña es obligatoria.");
 
-            // Consultamos en la base de datos.
+            // Sirve para consultar la base de datos.
             Usuario usuarioDB = usuarioRepository.buscarPorUsername(txtUsuario);
 
             // Validamos el passowrd en el banco
