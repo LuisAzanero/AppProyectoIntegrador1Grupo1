@@ -5,9 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import java.io.IOException;
 
-
 @WebServlet("/supervisor/panel")
-public class SupervisorServlet extends HttpServlet { 
+public class SupervisorServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -20,7 +19,7 @@ public class SupervisorServlet extends HttpServlet {
     }
 }
 
-// redireccionamiento del mecanico
+// Redireccionamiento del mecanico
 @WebServlet("/mecanico/tareas")
 class MecanicoServlet extends HttpServlet {
 
@@ -35,9 +34,8 @@ class MecanicoServlet extends HttpServlet {
     }
 }
 
-// redireciccionamiento del conductor
-@WebServlet("/conductor/ruta")
-class ConductorServlet extends HttpServlet {
+@WebServlet("/conductor/panel")
+class ConductorPanelServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -46,11 +44,12 @@ class ConductorServlet extends HttpServlet {
             res.sendRedirect("../login");
             return;
         }
-        req.getRequestDispatcher("../conductor_ruta.jsp").forward(req, res);
+        // Redirige al panel o vista operativa del chofer
+        req.getRequestDispatcher("../conductor_panel.jsp").forward(req, res);
     }
 }
 
-// redireccionamiento de garita
+// Redireccionamiento de garita
 @WebServlet("/garita/control")
 class GaritaServlet extends HttpServlet {
 
