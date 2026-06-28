@@ -1,10 +1,12 @@
 <%-- 
-    Document   : dashbord
+    Document   : dashboard
     Created on : 9 jun. 2026, 19:08:37
     Author     : luis.azanero
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.List" %>
+<%@ page import="pe.edu.utp.transvisa.domain.Vehiculo" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -14,6 +16,43 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light">
+
+    <%
+       
+        Integer totalVehiculos = (request.getAttribute("totalVehiculos") != null) ? (Integer) request.getAttribute("totalVehiculos") : 3;
+        Integer disponibles = (request.getAttribute("vehiculosDisponibles") != null) ? (Integer) request.getAttribute("vehiculosDisponibles") : 2;
+        Integer enTaller = (request.getAttribute("vehiculosEnTaller") != null) ? (Integer) request.getAttribute("vehiculosEnTaller") : 1;
+        Integer enRuta = (request.getAttribute("vehiculosEnRuta") != null) ? (Integer) request.getAttribute("vehiculosEnRuta") : 0;
+        
+        String porcentajeDisp = "66.6%";
+        if (totalVehiculos > 0) {
+            double calc = ((double) disponibles / totalVehiculos) * 100;
+            porcentajeDisp = String.format("%.1f%%", calc);
+        }
+        
+        // Carga dinámica de arrays para los gráficos de Chart.js
+        String placasJson = "['BYF-398', 'XYZ-789', 'ABC-123']";
+        String kilometrosJson = "[31000.00, 200000.00, 45000.00]";
+        
+        List<Vehiculo> listaVehiculos = (List<Vehiculo>) request.getAttribute("listaVehiculos");
+        if (listaVehiculos != null && !listaVehiculos.isEmpty()) {
+            StringBuilder sbPlacas = new StringBuilder("[");
+            StringBuilder sbKms = new StringBuilder("[");
+            for (int i = 0; i < listaVehiculos.size(); i++) {
+                Vehiculo v = listaVehiculos.get(i);
+                sbPlacas.append("'").append(v.getPlaca()).append("'");
+                sbKms.append(v.getKilometrajeActual());
+                if (i < listaVehiculos.size() - 1) {
+                    sbPlacas.append(",");
+                    sbKms.append(",");
+                }
+            }
+            sbPlacas.append("]");
+            sbKms.append("]");
+            placasJson = sbPlacas.toString();
+            kilometrosJson = sbKms.toString();
+        }
+    %>
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-3">
         <div class="container-fluid px-4">
@@ -28,8 +67,8 @@
                     <a class="nav-link active fw-semibold" aria-current="page" href="dashboard">📈 Dashboard</a>
                     <a class="nav-link text-white-50" href="usuarios">👥 Usuarios</a>
                     <a class="nav-link text-white-50" href="vehiculos">🚚 Vehículos</a>
-                    <a class="nav-link text-white-50" href="conductores">🚚 Conductores</a>
-                    <a class="nav-link text-white-50" href="movimientos_garita">🚚 Garita</a>
+                    <a class="nav-link text-white-50" href="conductores">👥 Conductores</a>
+                    <a class="nav-link text-white-50" href="garita/panel">🚪 Garita</a>
                 </div>
                 
                 <div class="d-flex align-items-center mt-3 mt-lg-0">
@@ -53,7 +92,7 @@
                 <div class="card border-start border-primary border-4 shadow-sm">
                     <div class="card-body py-4">
                         <h6 class="text-primary text-uppercase fw-bold small mb-1">Total Flota</h6>
-                        <h2 class="fw-bold text-dark mb-0"><%= request.getAttribute("totalVehiculos") != null ? request.getAttribute("totalVehiculos") : "3" %></h2>
+                        <h2 class="fw-bold text-dark mb-0"><%= totalVehiculos %></h2>
                     </div>
                 </div>
             </div>
@@ -61,7 +100,7 @@
                 <div class="card border-start border-success border-4 shadow-sm">
                     <div class="card-body py-4">
                         <h6 class="text-success text-uppercase fw-bold small mb-1">Unidades Disponibles</h6>
-                        <h2 class="fw-bold text-dark mb-0"><%= request.getAttribute("vehiculosDisponibles") != null ? request.getAttribute("vehiculosDisponibles") : "2" %></h2>
+                        <h2 class="fw-bold text-dark mb-0"><%= disponibles %></h2>
                     </div>
                 </div>
             </div>
@@ -69,7 +108,7 @@
                 <div class="card border-start border-warning border-4 shadow-sm">
                     <div class="card-body py-4">
                         <h6 class="text-warning text-uppercase fw-bold small mb-1">Unidades en Taller</h6>
-                        <h2 class="fw-bold text-dark mb-0"><%= request.getAttribute("vehiculosEnTaller") != null ? request.getAttribute("vehiculosEnTaller") : "1" %></h2>
+                        <h2 class="fw-bold text-dark mb-0"><%= enTaller %></h2>
                     </div>
                 </div>
             </div>
@@ -77,7 +116,7 @@
                 <div class="card border-start border-info border-4 shadow-sm">
                     <div class="card-body py-4">
                         <h6 class="text-info text-uppercase fw-bold small mb-1">Disponibilidad de Flota (%)</h6>
-                        <h2 class="fw-bold text-dark mb-0"><%= request.getAttribute("porcentajeDisponibilidad") != null ? request.getAttribute("porcentajeDisponibilidad") : "66.6%" %></h2>
+                        <h2 class="fw-bold text-dark mb-0"><%= porcentajeDisp %></h2>
                     </div>
                 </div>
             </div>
@@ -124,14 +163,14 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-        // Estados de flota
+        // Gráfico Circular (Doughnut)
         const ctxEstados = document.getElementById('chartEstados').getContext('2d');
         new Chart(ctxEstados, {
             type: 'doughnut',
             data: {
                 labels: ['Disponibles', 'En Taller', 'En Ruta'],
                 datasets: [{
-                    data: [2, 1, 0], // Data dura estructurada para empate con tus KPIs
+                    data: [<%= disponibles %>, <%= enTaller %>, <%= enRuta %>],
                     backgroundColor: ['#198754', '#ffc107', '#0dcaf0'],
                     borderWidth: 2
                 }]
@@ -147,15 +186,15 @@
             }
         });
 
-        // kilomeraje de las unidades
+        // Gráfico de Barras (Kilometraje Maestro)
         const ctxKilometraje = document.getElementById('chartKilometraje').getContext('2d');
         new Chart(ctxKilometraje, {
             type: 'bar',
             data: {
-                labels: ['V4X-912', 'F5T-204', 'A8B-311'], 
+                labels: <%= placasJson %>, 
                 datasets: [{
                     label: 'Kilómetros Recorridos (Km)',
-                    data: [124500, 89200, 210150], 
+                    data: <%= kilometrosJson %>, 
                     backgroundColor: 'rgba(13, 110, 253, 0.85)',
                     borderColor: 'rgb(13, 110, 253)',
                     borderWidth: 1
