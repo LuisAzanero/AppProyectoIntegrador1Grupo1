@@ -15,13 +15,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-//Redireccionamiento al login
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
     private static final Logger logger = LoggerFactory.getLogger(LoginServlet.class);
-
     private final UsuarioRepository usuarioRepository = new MySQLUsuarioRepository();
 
     @Override
@@ -43,10 +41,10 @@ public class LoginServlet extends HttpServlet {
             Preconditions.checkArgument(!Strings.isNullOrEmpty(txtUsuario), "El nombre de usuario es obligatorio.");
             Preconditions.checkArgument(!Strings.isNullOrEmpty(txtClave), "La contraseña es obligatoria.");
 
-            // Sirve para consultar la base de datos.
+            // Consultar la base de datos
             Usuario usuarioDB = usuarioRepository.buscarPorUsername(txtUsuario);
 
-            // Validamos el passowrd en el banco
+            // Validar credenciales
             if (usuarioDB != null && usuarioDB.getPasswordHash().equals(txtClave)) {
 
                 logger.info("Acceso concedido para el usuario: {} con Rol: {}", txtUsuario, usuarioDB.getRol());
@@ -57,34 +55,31 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("usuarioLogueado", usuarioDB.getNombre());
                 session.setAttribute("rolUsuario", usuarioDB.getRol());
 
-                // Redireccionar segun el Roles
                 String rol = usuarioDB.getRol();
 
+                // 🔄 REDIRECCIONAMIENTO CONTROLADO Y SINCRONIZADO POR ROLES
                 switch (rol) {
                     case "Administrador":
                     case "Gerente":
-                        // dashboard principal
                         response.sendRedirect("dashboard");
                         break;
 
                     case "Supervisor de flota":
-                        // portal del supervidor
                         response.sendRedirect("supervisor/panel");
                         break;
 
                     case "Tecnico Mecanico":
-                        // Portal mercanico
                         response.sendRedirect("mecanico/tareas");
                         break;
 
                     case "Conductor":
-                        // portal el conductor
-                        response.sendRedirect("conductor/ruta");
+                        // 🚚 Corregido: Coincide con ConductorPanelServlet
+                        response.sendRedirect("conductor/panel");
                         break;
 
                     case "Operador de Garita":
-                        // portal garita
-                        response.sendRedirect("garita/control");
+                        // 🚪 Corregido: Coincide con GaritaPanelServlet
+                        response.sendRedirect("garita/panel");
                         break;
 
                     default:
