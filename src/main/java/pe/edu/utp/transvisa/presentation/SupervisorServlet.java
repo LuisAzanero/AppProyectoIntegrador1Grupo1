@@ -50,8 +50,8 @@ class ConductorPanelServlet extends HttpServlet {
 }
 
 // Redireccionamiento de garita
-@WebServlet("/garita/control")
-class GaritaServlet extends HttpServlet {
+@WebServlet("/garita/panel")
+class GaritaPanelServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

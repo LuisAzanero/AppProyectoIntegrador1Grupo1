@@ -7,6 +7,7 @@ pe\edu\utp\transvisa\persistence\MovimientoRepository.class
 pe\edu\utp\transvisa\presentation\ConductorPanelServlet.class
 pe\edu\utp\transvisa\domain\Usuario.class
 pe\edu\utp\transvisa\persistence\ConexionBD.class
+pe\edu\utp\transvisa\persistence\MovimientoGaritaRepository.class
 pe\edu\utp\transvisa\persistence\MySQLConductorRepository.class
 pe\edu\utp\transvisa\presentation\ConductorServlet.class
 pe\edu\utp\transvisa\presentation\LoginServlet.class
@@ -14,8 +15,10 @@ pe\edu\utp\transvisa\presentation\DashboardServlet.class
 pe\edu\utp\transvisa\domain\Vehiculo.class
 pe\edu\utp\transvisa\presentation\VehiculoServlet.class
 pe\edu\utp\transvisa\presentation\GaritaServlet.class
+pe\edu\utp\transvisa\persistence\MySQLMovimientoGaritaRepository.class
 pe\edu\utp\transvisa\presentation\MecanicoServlet.class
 pe\edu\utp\transvisa\presentation\SupervisorServlet.class
+pe\edu\utp\transvisa\presentation\GaritaPanelServlet.class
 pe\edu\utp\transvisa\domain\MovimientoGarita.class
 pe\edu\utp\transvisa\persistence\UsuarioRepository.class
 pe\edu\utp\transvisa\presentation\MainApplication.class

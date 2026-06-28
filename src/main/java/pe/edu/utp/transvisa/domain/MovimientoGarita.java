@@ -1,37 +1,32 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package pe.edu.utp.transvisa.domain;
 
 import java.math.BigDecimal;
-import java.security.Timestamp;
-import java.util.Date;
+import java.time.LocalDateTime;
 
-/**
- *
- * @author luisazanero
- */
 public class MovimientoGarita {
 
-    private int idMovimiento;
-    private int idVehiculo; 
-    private int idUsuario; 
+    private int idMovement;
+    private int idVehiculo;
+    private int idUsuario;
     private String tipoOperacion; 
-    private Date fechaHora;
+    private LocalDateTime fechaHora;
     private BigDecimal kilometrajeRegistro;
-    private Timestamp fechaCreacion;
 
+    
+    private String placaVehiculo;
+    private String nombreUsuario;
+
+    // Constructores
     public MovimientoGarita() {
     }
 
     // Getters y Setters
-    public int getIdMovimiento() {
-        return idMovimiento;
+    public int getIdMovement() {
+        return idMovement;
     }
 
-    public void setIdMovimiento(int idMovimiento) {
-        this.idMovimiento = idMovimiento;
+    public void setIdMovement(int idMovement) {
+        this.idMovement = idMovement;
     }
 
     public int getIdVehiculo() {
@@ -40,6 +35,10 @@ public class MovimientoGarita {
 
     public void setIdVehiculo(int idVehiculo) {
         this.idVehiculo = idVehiculo;
+    }
+
+    public int idUsuario() {
+        return idUsuario;
     }
 
     public int getIdUsuario() {
@@ -58,11 +57,35 @@ public class MovimientoGarita {
         this.tipoOperacion = tipoOperacion;
     }
 
+    public LocalDateTime getFechaHora() {
+        return fechaHora;
+    }
+
+    public void setFechaHora(LocalDateTime fechaHora) {
+        this.fechaHora = fechaHora;
+    }
+
     public BigDecimal getKilometrajeRegistro() {
         return kilometrajeRegistro;
     }
 
     public void setKilometrajeRegistro(BigDecimal kilometrajeRegistro) {
         this.kilometrajeRegistro = kilometrajeRegistro;
+    }
+
+    public String getPlacaVehiculo() {
+        return placaVehiculo;
+    }
+
+    public void setPlacaVehiculo(String placaVehiculo) {
+        this.placaVehiculo = placaVehiculo;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
     }
 }

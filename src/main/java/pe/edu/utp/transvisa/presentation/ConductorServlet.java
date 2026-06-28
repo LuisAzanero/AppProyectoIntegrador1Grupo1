@@ -24,7 +24,7 @@ public class ConductorServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 🛡️ Filtro de Autenticación de Sesión
+      
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("usuarioLogueado") == null) {
             response.sendRedirect("login");
@@ -41,7 +41,7 @@ public class ConductorServlet extends HttpServlet {
                 return;
             }
 
-            // Flujo estándar: Cargar grilla de choferes fresca desde MySQL
+            
             List<Conductor> lista = conductorRepository.listarTodos();
             request.setAttribute("listaConductores", lista);
             request.getRequestDispatcher("conductores.jsp").forward(request, response);
@@ -64,7 +64,7 @@ public class ConductorServlet extends HttpServlet {
         String nroBreve = request.getParameter("nroBreve");
 
         try {
-            // 🛠️ Validaciones defensivas utilizando Google Guava (Rúbrica - Robustez)
+           
             Preconditions.checkArgument(!Strings.isNullOrEmpty(dni), "El DNI es obligatorio.");
             Preconditions.checkArgument(!Strings.isNullOrEmpty(nombres), "El nombre completo es obligatorio.");
             Preconditions.checkArgument(!Strings.isNullOrEmpty(nroBreve), "El número de brevete es obligatorio.");
@@ -76,11 +76,11 @@ public class ConductorServlet extends HttpServlet {
             c.setNroBreve(nroBreve.toUpperCase().trim());
 
             if (Strings.isNullOrEmpty(idStr)) {
-                // 🛡️ Control de Duplicados: Validación de DNI único (Regla de negocio)
+          
                 if (conductorRepository.existeDni(c.getDni())) {
                     logger.warn("Registro rechazado: El DNI de conductor {} ya existe en la BD.", c.getDni());
                     
-                    // Atributo exacto que interceptará el SweetAlert2 en conductores.jsp
+                   
                     request.setAttribute("errorDniDuplicado", "El DNI (" + c.getDni() + ") ya le pertenece a un conductor registrado.");
                     
                     request.setAttribute("listaConductores", conductorRepository.listarTodos());
@@ -91,7 +91,7 @@ public class ConductorServlet extends HttpServlet {
                 conductorRepository.registrar(c);
                 logger.info("Nuevo conductor registrado exitosamente: {}", nombres);
             } else {
-                // Flujo de edición
+               
                 c.setIdConductor(Integer.parseInt(idStr));
                 conductorRepository.actualizar(c);
                 logger.info("Datos actualizados para el conductor ID: {}", idStr);
