@@ -65,7 +65,7 @@
         <div class="container-fluid px-4 py-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <div>
-                    <h2 class="text-secondary fw-bold mb-0">🔧 Consola de Monitoreo y KPIs Mecánicos</h2>
+                    <h2 class="text-secondary fw-bold mb-0">🔧 Dashboard de Monitoreo y KPIs Mecánicos</h2>
                     <p class="text-muted mb-0">Métricas de rendimiento operativo del taller de soporte de TRANSVISA.</p>
                 </div>
                 <a href="../mantenimientos" class="btn btn-warning fw-bold shadow-sm d-flex align-items-center gap-2">
