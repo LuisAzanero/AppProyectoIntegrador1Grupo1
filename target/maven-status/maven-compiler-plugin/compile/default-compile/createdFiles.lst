@@ -13,14 +13,17 @@ pe\edu\utp\transvisa\presentation\ConductorServlet.class
 pe\edu\utp\transvisa\presentation\LoginServlet.class
 pe\edu\utp\transvisa\presentation\DashboardServlet.class
 pe\edu\utp\transvisa\domain\Vehiculo.class
+pe\edu\utp\transvisa\persistence\OrdenMantenimientoRepository.class
 pe\edu\utp\transvisa\presentation\VehiculoServlet.class
 pe\edu\utp\transvisa\presentation\GaritaServlet.class
 pe\edu\utp\transvisa\persistence\MySQLMovimientoGaritaRepository.class
 pe\edu\utp\transvisa\presentation\MecanicoServlet.class
 pe\edu\utp\transvisa\presentation\SupervisorServlet.class
 pe\edu\utp\transvisa\presentation\GaritaPanelServlet.class
+pe\edu\utp\transvisa\presentation\MantenimientoServlet.class
 pe\edu\utp\transvisa\domain\MovimientoGarita.class
 pe\edu\utp\transvisa\persistence\UsuarioRepository.class
+pe\edu\utp\transvisa\persistence\MySQLOrdenMantenimientoRepository.class
 pe\edu\utp\transvisa\presentation\MainApplication.class
 pe\edu\utp\transvisa\domain\Conductor.class
 pe\edu\utp\transvisa\presentation\UsuarioServlet.class

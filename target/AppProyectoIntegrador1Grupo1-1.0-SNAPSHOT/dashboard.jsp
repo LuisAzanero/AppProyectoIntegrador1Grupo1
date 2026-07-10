@@ -137,7 +137,7 @@
             <div class="col-md-8">
                 <div class="card border-0 shadow-sm h-100">
                     <div class="card-body p-4">
-                        <h5 class="fw-bold text-secondary mb-3">Kilometraje Actual por Tracto (Control Preventivo)</h5>
+                        <h5 class="fw-bold text-secondary mb-3">Kilometraje Actual por Vehículo (Control Preventivo)</h5>
                         <div style="position: relative; height:250px; width:100%">
                             <canvas id="chartKilometraje"></canvas>
                         </div>
@@ -149,7 +149,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card border-0 shadow-sm p-4">
-                    <h5 class="fw-bold text-secondary mb-3">Cumplimiento del Plan de Mantenimiento (RF-13)</h5>
+                    <h5 class="fw-bold text-secondary mb-3">Cumplimiento del Plan de Mantenimiento</h5>
                     <div class="progress mb-3" style="height: 25px;">
                         <div class="progress-bar bg-info progress-bar-striped progress-bar-animated fw-bold" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
                     </div>

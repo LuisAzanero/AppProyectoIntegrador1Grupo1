@@ -11,7 +11,7 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <title>TRANSVISA - Mantenimiento de Usuarios</title>
+        <title>TRANSVISA - Módulo de Usuarios</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
     </head>
@@ -21,9 +21,11 @@
             <div class="container-fluid px-4">
                 <a class="navbar-brand fw-bold" href="dashboard">TRANSVISA E.I.R.L.</a>
                 <div class="navbar-nav me-auto">
-                    <a class="nav-link" href="dashboard">Dashboard</a>
-                    <a class="nav-link active" href="usuarios">Usuarios</a>
-                    <a class="nav-link" href="vehiculos">Vehículos</a>
+                    <a class="nav-link active fw-semibold" aria-current="page" href="dashboard">📈 Dashboard</a>
+                    <a class="nav-link text-white-50" href="usuarios">👥 Usuarios</a>
+                    <a class="nav-link text-white-50" href="vehiculos">🚚 Vehículos</a>
+                    <a class="nav-link text-white-50" href="conductores">👥 Conductores</a>
+                    <a class="nav-link text-white-50" href="garita/panel">🚪 Garita</a>
                 </div>
                 <span class="navbar-text text-white">
                     Operador: <strong><%= session.getAttribute("usuarioLogueado")%></strong>
