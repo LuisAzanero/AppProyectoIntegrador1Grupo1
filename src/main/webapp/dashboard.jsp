@@ -74,8 +74,6 @@
                     <a class="nav-link text-white-50" href="usuarios"><i class="bi bi-people"></i> Usuarios</a>
                     <a class="nav-link text-white-50" href="vehiculos"><i class="bi bi-truck"></i> Vehículos</a>
                     <a class="nav-link text-white-50" href="conductores"><i class="bi bi-person-badge"></i> Conductores</a>
-                    <a class="nav-link text-white-50" href="mantenimientos"><i class="bi bi-wrench-adjustable"></i> Mantenimientos</a>
-                    <a class="nav-link text-white-50" href="garita/panel"><i class="bi bi-door-open"></i> Garita</a>
                 </div>
                 
                 <div class="d-flex align-items-center mt-3 mt-lg-0">

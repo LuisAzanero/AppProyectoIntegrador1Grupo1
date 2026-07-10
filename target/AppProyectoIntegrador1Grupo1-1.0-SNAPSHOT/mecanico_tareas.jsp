@@ -22,7 +22,6 @@
     <body class="bg-light">
         
         <%
-           
             List<OrdenMantenimiento> lista = (List<OrdenMantenimiento>) request.getAttribute("listaOrdenes");
             int totalOrdenes = 0;
             int ordenesAbiertas = 0;
@@ -58,8 +57,8 @@
                 <div class="collapse navbar-collapse" id="navMecanico">
                     <div class="navbar-nav me-auto mb-2 mb-lg-0">
                         <a class="nav-link active fw-semibold text-warning" href="tareas"><i class="bi bi-speedometer"></i> Mi Panel Técnico</a>
-                        <!-- 🔗 Hipervínculo inyectado hacia el módulo maestro de mantenimientos generales -->
-                        <a class="nav-link text-white-50" href="../mantenimientos"><i class="bi bi-archive-fill"></i> Historial de Órdenes</a>
+                        <!-- 🔗 Hipervínculo directo al módulo maestro transaccional donde se crean y cierran los registros -->
+                        <a class="nav-link text-white-50" href="../mantenimientos"><i class="bi bi-tools"></i> Consola de Registro Maestro</a>
                     </div>
                     
                     <div class="d-flex align-items-center gap-3">
@@ -75,12 +74,13 @@
         <div class="container-fluid px-4 py-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <div>
-                    <h2 class="text-secondary fw-bold mb-0">🔧 Consola de Mantenimiento y Tareas Técnicas (HU-2)</h2>
-                    <p class="text-muted mb-0">Registro inmediato de reparaciones de la flota vehicular para mitigar riesgos logísticos.</p>
+                    <h2 class="text-secondary fw-bold mb-0">🔧 Consola de Monitoreo y KPIs Mecánicos</h2>
+                    <p class="text-muted mb-0">Métricas de rendimiento operativo del taller de soporte de TRANSVISA.</p>
                 </div>
-                <button class="btn btn-warning fw-bold shadow-sm d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#modalMecanico" onclick="prepararFormulario()">
-                    <i class="bi bi-plus-circle-fill"></i> Intervenir Nueva Unidad
-                </button>
+                <!-- Botón redirecciona directamente a la vista de registros principal para centralizar la lógica -->
+                <a href="../mantenimientos" class="btn btn-warning fw-bold shadow-sm d-flex align-items-center gap-2">
+                    <i class="bi bi-pencil-square"></i> Gestionar en Consola Maestra
+                </a>
             </div>
 
             <!-- 📊 TARJETAS ANALÍTICAS KPIS PARA EL MECÁNICO -->
@@ -88,7 +88,7 @@
                 <div class="col-sm-6 col-xl-3">
                     <div class="card border-start border-primary border-4 shadow-sm bg-white">
                         <div class="card-body py-4">
-                            <h6 class="text-muted text-uppercase fw-bold small mb-1">Total Órdenes Asignadas</h6>
+                            <h6 class="text-muted text-uppercase fw-bold small mb-1">Total Órdenes Registradas</h6>
                             <h2 class="fw-bold text-dark mb-0"><%= totalOrdenes %></h2>
                         </div>
                     </div>
@@ -131,7 +131,6 @@
                                 <th>Diagnóstico / Trabajo Realizado</th>
                                 <th>Fecha Inicio</th>
                                 <th>Estado Actual</th>
-                                <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -145,18 +144,9 @@
                                 <td><strong>#<%= o.getIdOrden()%></strong></td>
                                 <td><span class="badge bg-secondary p-2 font-monospace fs-6"><%= o.getPlacaVehiculo()%></span></td>
                                 <td><span class="<%= tipoBadge %> p-2 fw-bold"><%= o.getTipoMantenimiento()%></span></td>
-                                <td><p class="mb-0 text-wrap font-monospace small" style="max-width: 400px;"><%= o.getDescripcion()%></p></td>
+                                <td><p class="mb-0 text-wrap font-monospace small" style="max-width: 500px;"><%= o.getDescripcion()%></p></td>
                                 <td><%= o.getFechaInicio()%></td>
                                 <td><span class="<%= estadoBadge %>"><i class="bi <%= "ABIERTA".equals(o.getEstadoOrden()) ? "bi-clock-history" : "bi-shield-fill-check" %>"></i> <%= o.getEstadoOrden()%></span></td>
-                                <td class="text-center">
-                                    <% if ("ABIERTA".equals(o.getEstadoOrden())) { %>
-                                        <a href="../mantenimientos?action=cerrar&id=<%= o.getIdOrden()%>" class="btn btn-sm btn-success fw-bold d-inline-flex align-items-center gap-1" onclick="return confirm('¿Confirmar finalización de la reparación técnica?')">
-                                            <i class="bi bi-check2-circle"></i> Finalizar Tarea
-                                        </a>
-                                    <% } else { %>
-                                        <span class="text-muted small"><i class="bi bi-lock-fill"></i> Bloqueado</span>
-                                    <% } %>
-                                </td>
                             </tr>
                             <%
                                     }
@@ -164,57 +154,6 @@
                             %>
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal de Creación de Orden Directa para el Mecánico -->
-        <div class="modal fade" id="modalMecanico" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content border-0 shadow">
-                    <form action="../mantenimientos" method="POST">
-                        <div class="modal-header bg-warning text-dark">
-                            <h5 class="modal-title fw-bold"><i class="bi bi-tools"></i> Apertura de Ticket de Reparación</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body p-4">
-                            <input type="hidden" name="idUsuario" value="<%= session.getAttribute("idUsuarioLogueado") != null ? session.getAttribute("idUsuarioLogueado") : "1" %>">
-                            
-                            <div class="mb-3">
-                                <label class="form-label fw-semibold">Vehículo Ingresado al Taller</label>
-                                <select name="idVehiculo" id="formVehiculo" class="form-select" required>
-                                    <option value="">-- Seleccione Placa --</option>
-                                    <%
-                                        List<Vehiculo> vehiculos = (List<Vehiculo>) request.getAttribute("listaVehiculos");
-                                        if (vehiculos != null) {
-                                            for (Vehiculo v : vehiculos) {
-                                    %>
-                                    <option value="<%= v.getIdVehiculo()%>"><%= v.getPlaca() %> - <%= v.getMarca() %> (<%= v.getEstadoOperativo() %>)</option>
-                                    <%
-                                            }
-                                        }
-                                    %>
-                                </select>
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label fw-semibold">Tipo de Mantenimiento (HU-2)</label>
-                                <select name="tipoMantenimiento" id="formTipo" class="form-select" required>
-                                    <option value="PREVENTIVO">🟢 PREVENTIVO (Filtros, Pastillas, Lubricación)</option>
-                                    <option value="CORRECTIVO">🔴 CORRECTIVO (Fallas de Motor, Transmisión, Sistema Eléctrico)</option>
-                                </select>
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label fw-semibold">Informe Técnico / Componentes a Reparar</label>
-                                <textarea name="descripcion" id="formDescripcion" class="form-control" rows="4" placeholder="Escriba el detalle de la intervención mecánica..." required></textarea>
-                            </div>
-                        </div>
-                        <div class="modal-footer bg-light">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-warning fw-bold text-dark">Registrar en Historial</button>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -231,16 +170,24 @@
                     responsive: true,
                     order: [[0, "desc"]],
                     language: {
-                        url: 'https://cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
+                        processing: "Procesando...",
+                        search: "Buscar:",
+                        lengthMenu: "Mostrar _MENU_ registros",
+                        info: "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                        infoEmpty: "Mostrando registros del 0 al 0 de un total de 0 registros",
+                        infoFiltered: "(filtrado de un total de _MAX_ registros)",
+                        loadingRecords: "Cargando...",
+                        zeroRecords: "No se encontraron resultados",
+                        emptyTable: "Ningún dato disponible en esta tabla",
+                        paginate: {
+                            first: "Primero",
+                            previous: "Anterior",
+                            next: "Siguiente",
+                            last: "Último"
+                        }
                     }
                 });
             });
-
-            function prepararFormulario() {
-                document.getElementById('formVehiculo').value = '';
-                document.getElementById('formTipo').value = 'PREVENTIVO';
-                document.getElementById('formDescripcion').value = '';
-            }
         </script>
     </body>
 </html>

@@ -23,17 +23,15 @@
             <div class="container-fluid px-4">
                 <a class="navbar-brand fw-bold" href="dashboard">TRANSVISA E.I.R.L.</a>
                 <div class="navbar-nav me-auto">
-                    <a class="nav-link" href="dashboard">Dashboard</a>
-                    <a class="nav-link" href="usuarios">Usuarios</a>
-                    <a class="nav-link" href="vehiculos">Vehículos</a>
-                    <a class="nav-link" href="conductores">Conductores</a>
+                    <a class="nav-link" href="mecanico/tareas">Dashboard</a>
                     <a class="nav-link active" href="mantenimientos">Mantenimiento</a>
-                     <a class="nav-link active" href="ordenes_mantenimiento">Ordenes Mantenimiento</a>
-                    <a class="nav-link" href="garita/panel">Control Garita</a>
                 </div>
-                <span class="navbar-text text-white">
-                    Técnico: <strong><%= session.getAttribute("usuarioLogueado")%></strong>
-                </span>
+                <div class="d-flex align-items-center mt-3 mt-lg-0">
+                    <span class="navbar-text text-white me-3">
+                        <i class="bi bi-person-workspace text-warning"></i>  Usuario: <strong class="text-warning"><%= session.getAttribute("usuarioLogueado") != null ? session.getAttribute("usuarioLogueado") : "Administrador" %></strong>
+                    </span>
+                    <a href="login" class="btn btn-sm btn-outline-danger px-3"><i class="bi bi-power"></i> Cerrar Sesión</a>
+                </div>
             </div>
         </nav>
 
@@ -41,7 +39,7 @@
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <div>
                     <h2 class="text-secondary fw-bold mb-0">🛠️ Gestión de Órdenes de Mantenimiento</h2>
-                    <p class="text-muted mb-0">Cumplimiento del requerimiento RF-10 para soporte preventivo y correctivo.</p>
+                    <p class="text-muted mb-0">Cumplimiento del requerimiento para soporte preventivo y correctivo.</p>
                 </div>
                 <button class="btn btn-warning fw-bold shadow-sm" data-bs-toggle="modal" data-bs-target="#modalOrden" onclick="prepararFormulario()">
                     🔧 Crear Órden de Trabajo
@@ -133,7 +131,7 @@
 
                             <div class="mb-3">
                                 <label class="form-label fw-semibold">Descripción del Diagnóstico / Tareas a realizar</label>
-                                <textarea name="descripcion" id="formDescripcion" class="form-control" rows="4" placeholder="Ej: Cambio de pastillas de freno delanteras y filtros de combustible..." required></textarea>
+                                <textarea name="descripcion" id="formDescripcion" class="form-control" rows="4" placeholder="Ejemplo: Cambio de pastillas de freno delanteras y filtros de combustible..." required></textarea>
                             </div>
                         </div>
                         <div class="modal-footer bg-light">
