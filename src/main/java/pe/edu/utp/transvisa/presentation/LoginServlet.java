@@ -73,12 +73,10 @@ public class LoginServlet extends HttpServlet {
                         break;
 
                     case "Conductor":
-                        // 🚚 Corregido: Coincide con ConductorPanelServlet
                         response.sendRedirect("conductor/panel");
                         break;
 
                     case "Operador de Garita":
-                        // 🚪 Corregido: Coincide con GaritaPanelServlet
                         response.sendRedirect("garita/panel");
                         break;
 
