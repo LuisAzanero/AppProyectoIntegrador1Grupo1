@@ -22,8 +22,6 @@
                 <a class="navbar-brand fw-bold" href="dashboard">TRANSVISA E.I.R.L.</a>
                 <div class="navbar-nav me-auto">
                     <a class="nav-link" href="dashboard">Dashboard</a>
-                    <a class="nav-link" href="usuarios">Usuarios</a>
-                    <a class="nav-link active" href="vehiculos">Vehículos</a>
                 </div>
                 <span class="navbar-text text-white">
                     Operador: <strong><%= session.getAttribute("usuarioLogueado")%></strong>

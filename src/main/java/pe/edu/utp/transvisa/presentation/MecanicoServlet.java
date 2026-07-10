@@ -28,11 +28,10 @@ public class MecanicoServlet extends HttpServlet {
         }
 
         try {
-            req.setAttribute("listaOrdenes", ordenRepository.listarTodas());
-            req.setAttribute("listaVehiculos", vehiculoRepository.listarTodos());
+            s.setAttribute("listaOrdenes", ordenRepository.listarTodas());
+            s.setAttribute("listaVehiculos", vehiculoRepository.listarTodos());
             
-            req.getRequestDispatcher("/mecanico_tareas.jsp").forward(req, res);
-            
+            getServletContext().getRequestDispatcher("/mecanico_tareas.jsp").forward(req, res);
         } catch (Exception e) {
             logger.error("Error al cargar el panel del taller mecánico", e);
             res.sendRedirect("../login");

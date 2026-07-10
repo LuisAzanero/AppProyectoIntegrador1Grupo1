@@ -22,8 +22,7 @@
             <div class="container-fluid px-4">
                 <a class="navbar-brand fw-bold" href="dashboard">TRANSVISA E.I.R.L.</a>
                 <div class="navbar-nav me-auto">
-                    <a class="nav-link" href="supervisor/panel">Dashboard</a>
-                    <a class="nav-link" href="vehiculos">Vehículos</a>
+                    <a class="nav-link" href="dashboard">Dashboard</a>
                     <a class="nav-link active" href="conductores">Conductores</a>
                 </div>
                 <span class="navbar-text text-white">
