@@ -121,7 +121,7 @@
 
                             <div class="mb-3">
                                 <label class="form-label fw-semibold">Kilometraje Marcado en Tablero (Km)</label>
-                                <input type="number" step="0.01" name="kilometrajeRegistro" id="formKm" class="form-control form-control-lg" placeholder="Ej: 12500.80" required>
+                                <input type="number" step="0.01" name="kilometrajeRegistro" id="formKm" class="form-control form-control-lg" placeholder="Ejemplo: 12500.80" required>
                                 <div class="form-text text-muted">⚠️ El odómetro ingresado actualizará los maestros de la flota.</div>
                             </div>
                         </div>
