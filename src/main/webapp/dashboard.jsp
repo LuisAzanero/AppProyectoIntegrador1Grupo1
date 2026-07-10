@@ -80,7 +80,7 @@
                 
                 <div class="d-flex align-items-center mt-3 mt-lg-0">
                     <span class="navbar-text text-white me-3">
-                        <i class="bi bi-person-workspace text-warning"></i> Solución: <strong class="text-warning"><%= session.getAttribute("usuarioLogueado") != null ? session.getAttribute("usuarioLogueado") : "Administrador" %></strong>
+                        <i class="bi bi-person-workspace text-warning"></i>  Usuario: <strong class="text-warning"><%= session.getAttribute("usuarioLogueado") != null ? session.getAttribute("usuarioLogueado") : "Administrador" %></strong>
                     </span>
                     <a href="login" class="btn btn-sm btn-outline-danger px-3"><i class="bi bi-power"></i> Cerrar Sesión</a>
                 </div>

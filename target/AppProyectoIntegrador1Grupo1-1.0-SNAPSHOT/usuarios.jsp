@@ -24,15 +24,18 @@
                     <a class="nav-link active fw-semibold text-primary" href="dashboard"><i class="bi bi-graph-up"></i> Dashboard</a>
                     <a class="nav-link text-white-50" href="usuarios"><i class="bi bi-people"></i> Usuarios</a>
                 </div>
-                <span class="navbar-text text-white">
-                    Operador: <strong><%= session.getAttribute("usuarioLogueado")%></strong>
-                </span>
+                 <div class="d-flex align-items-center mt-3 mt-lg-0">
+                    <span class="navbar-text text-white me-3">
+                        <i class="bi bi-person-workspace text-warning"></i>  Usuario: <strong class="text-warning"><%= session.getAttribute("usuarioLogueado") != null ? session.getAttribute("usuarioLogueado") : "Administrador" %></strong>
+                    </span>
+                    <a href="login" class="btn btn-sm btn-outline-danger px-3"><i class="bi bi-power"></i> Cerrar Sesión</a>
+                </div>
             </div>
         </nav>
 
         <div class="container-fluid px-4 py-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="text-secondary fw-bold mb-0">Mantenimiento de Usuarios</h2>
+                <h2 class="text-secondary fw-bold mb-0">Modulos de Usuarios</h2>
                 <div class="d-flex gap-2">
                     <div class="dropdown">
                         <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownUsuarios" data-bs-toggle="dropdown" aria-expanded="false">
