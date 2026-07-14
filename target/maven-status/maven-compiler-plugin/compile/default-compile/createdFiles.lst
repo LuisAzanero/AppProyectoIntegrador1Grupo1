@@ -3,6 +3,7 @@ pe\edu\utp\transvisa\persistence\mock\MockMovimientoRepository.class
 pe\edu\utp\transvisa\business\MovimientoService.class
 pe\edu\utp\transvisa\presentation\ReporteUsuarioServlet.class
 pe\edu\utp\transvisa\domain\OrdenMantenimiento.class
+pe\edu\utp\transvisa\presentation\MonitoreoServlet.class
 pe\edu\utp\transvisa\persistence\MovimientoRepository.class
 pe\edu\utp\transvisa\presentation\ConductorPanelServlet.class
 pe\edu\utp\transvisa\domain\Usuario.class

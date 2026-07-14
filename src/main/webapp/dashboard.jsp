@@ -74,6 +74,7 @@
                     <a class="nav-link text-white-50" href="usuarios"><i class="bi bi-people"></i> Usuarios</a>
                     <a class="nav-link text-white-50" href="vehiculos"><i class="bi bi-truck"></i> Vehículos</a>
                     <a class="nav-link text-white-50" href="conductores"><i class="bi bi-person-badge"></i> Conductores</a>
+                   
                 </div>
                 
                 <div class="d-flex align-items-center mt-3 mt-lg-0">
