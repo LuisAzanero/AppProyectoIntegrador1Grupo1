@@ -98,6 +98,7 @@
                 <configuration>
                     <skipTests>true</skipTests>
                 </configuration>
+                <!-- despliegue -->
             </plugin>
         </plugins>
     </build>
