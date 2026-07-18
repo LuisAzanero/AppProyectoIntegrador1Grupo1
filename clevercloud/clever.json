@@ -1,9 +1,5 @@
 {
-  "build": {
-    "type": "maven",
-    "goal": "package"
-  },
   "deploy": {
-    "webcontainer": "tomcat"
+    "webcontainer": "TOMCAT"
   }
 }
