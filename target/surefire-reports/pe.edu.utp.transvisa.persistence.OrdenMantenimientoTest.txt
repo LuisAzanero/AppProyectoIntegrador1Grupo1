@@ -1,4 +1,28 @@
 -------------------------------------------------------------------------------
 Test set: pe.edu.utp.transvisa.persistence.OrdenMantenimientoTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.563 s -- in pe.edu.utp.transvisa.persistence.OrdenMantenimientoTest
+Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 2.994 s <<< FAILURE! -- in pe.edu.utp.transvisa.persistence.OrdenMantenimientoTest
+pe.edu.utp.transvisa.persistence.OrdenMantenimientoTest.testRegistrarOrden -- Time elapsed: 1.742 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: La inserción de la orden falló en la capa de persistencia MySQL ==> Unexpected exception thrown: java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`bwtsfa0gnbbwz5w5uuf5`.`ordenes_mantenimiento`, CONSTRAINT `fk_ordenes_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON UPDATE CASCADE)
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertDoesNotThrow.createAssertionFailedError(AssertDoesNotThrow.java:84)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:53)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:40)
+	at org.junit.jupiter.api.Assertions.assertDoesNotThrow(Assertions.java:3187)
+	at pe.edu.utp.transvisa.persistence.OrdenMantenimientoTest.testRegistrarOrden(OrdenMantenimientoTest.java:45)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`bwtsfa0gnbbwz5w5uuf5`.`ordenes_mantenimiento`, CONSTRAINT `fk_ordenes_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON UPDATE CASCADE)
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:118)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:912)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1054)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1003)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1312)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:988)
+	at pe.edu.utp.transvisa.persistence.MySQLOrdenMantenimientoRepository.registrar(MySQLOrdenMantenimientoRepository.java:52)
+	at pe.edu.utp.transvisa.persistence.OrdenMantenimientoTest.lambda$testRegistrarOrden$0(OrdenMantenimientoTest.java:46)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:49)
+	... 6 more
+
