@@ -3,7 +3,6 @@
     Created on : 10 jun. 2026, 10:14:29
     Author     : luis.azanero
 --%>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="es">
@@ -52,45 +51,52 @@
             </div>
             
             <div class="row g-4 mb-5">
+                <!-- 👥 Tarjeta 1: Choferes Activos -->
                 <div class="col-sm-6 col-xl-3">
                     <div class="card border-start border-primary border-4 shadow-sm bg-white">
                         <div class="card-body d-flex align-items-center justify-content-between py-4">
                             <div>
                                 <h6 class="text-muted text-uppercase fw-bold small mb-1">Choferes Activos</h6>
-                                <h2 class="fw-bold text-dark mb-0">--</h2>
+                                <h2 class="fw-bold text-dark mb-0"><%= request.getAttribute("choferesActivos") != null ? request.getAttribute("choferesActivos") : "0" %></h2>
                             </div>
                             <div class="fs-1 text-primary-50 text-opacity-25"><i class="bi bi-people-fill text-primary"></i></div>
                         </div>
                     </div>
                 </div>
+
+                <!-- 🚨 Tarjeta 2: Alertas Críticas -->
                 <div class="col-sm-6 col-xl-3">
                     <div class="card border-start border-danger border-4 shadow-sm bg-white">
                         <div class="card-body d-flex align-items-center justify-content-between py-4">
                             <div>
                                 <h6 class="text-muted text-uppercase fw-bold small mb-1">Alertas Críticas</h6>
-                                <h2 class="fw-bold text-dark mb-0">0</h2>
+                                <h2 class="fw-bold text-dark mb-0"><%= request.getAttribute("alertasCriticas") != null ? request.getAttribute("alertasCriticas") : "0" %></h2>
                             </div>
                             <div class="fs-1 text-danger"><i class="bi bi-exclamation-triangle-fill"></i></div>
                         </div>
                     </div>
                 </div>
+
+                <!-- 🚚 Tarjeta 3: Rutas en Despacho -->
                 <div class="col-sm-6 col-xl-3">
                     <div class="card border-start border-info border-4 shadow-sm bg-white">
                         <div class="card-body d-flex align-items-center justify-content-between py-4">
                             <div>
                                 <h6 class="text-muted text-uppercase fw-bold small mb-1">Rutas en Despacho</h6>
-                                <h2 class="fw-bold text-dark mb-0">--</h2>
+                                <h2 class="fw-bold text-dark mb-0"><%= request.getAttribute("rutasDespacho") != null ? request.getAttribute("rutasDespacho") : "0" %></h2>
                             </div>
                             <div class="fs-1 text-info"><i class="bi bi-geo-alt-fill"></i></div>
                         </div>
                     </div>
                 </div>
+
+                <!-- 📈 Tarjeta 4: Eficiencia Operativa -->
                 <div class="col-sm-6 col-xl-3">
                     <div class="card border-start border-success border-4 shadow-sm bg-white">
                         <div class="card-body d-flex align-items-center justify-content-between py-4">
                             <div>
                                 <h6 class="text-muted text-uppercase fw-bold small mb-1">Eficiencia Operativa</h6>
-                                <h2 class="fw-bold text-dark mb-0">98.4%</h2>
+                                <h2 class="fw-bold text-dark mb-0"><%= request.getAttribute("eficiencia") != null ? request.getAttribute("eficiencia") : "0.0%" %></h2>
                             </div>
                             <div class="fs-1 text-success"><i class="bi bi-graph-up-arrow"></i></div>
                         </div>
@@ -103,7 +109,7 @@
                     <div class="mb-3 fs-1 text-secondary opacity-50">
                         <i class="bi bi-laptop-fill"></i>
                     </div>
-                    <h4 class="text-secondary fw-bold">Consola Central de Despacho</h4>
+                    <h4 class="text-secondary fw-bold">Panel Central de Despacho</h4>
                     <p class="text-muted mx-auto" style="max-width: 600px;">Utiliza los accesos de la barra superior para gestionar las hojas de vida de los conductores registrados o auditar los movimientos vehiculares validados en la garita maestra de TRANSVISA.</p>
                 </div>
             </div>

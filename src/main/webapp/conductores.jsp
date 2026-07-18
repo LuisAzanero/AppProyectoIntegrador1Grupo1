@@ -33,7 +33,7 @@
 
         <div class="container-fluid px-4 py-5">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h2 class="text-secondary fw-bold mb-0">Control de Personal de Conducción</h2>
+                <h2 class="text-secondary fw-bold mb-0">Control de Personal de Conductores</h2>
                 <div class="d-flex gap-2">
                     <div class="dropdown">
                         <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">

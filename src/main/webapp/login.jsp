@@ -75,7 +75,7 @@
                         </form>
                     </div>
                     <div class="text-center text-white-50 mt-4 small">
-                        &copy; 2026 TRANSVISA E.I.R.L. &bull; Avance 3 Integrador 1
+                        &copy; 2026 TRANSVISA E.I.R.L. &bull; Proyeto Final - Integrador 1
                     </div>
                 </div>
             </div>

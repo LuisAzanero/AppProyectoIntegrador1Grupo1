@@ -19,9 +19,9 @@ public class ConexionBD {
     private static final Logger logger = LoggerFactory.getLogger(ConexionBD.class);
 
     // Conexion a la base de datos
-    private static final String URL = "jdbc:mysql://localhost:3306/transvisa_db?useSSL=false&serverTimezone=America/Lima&allowPublicKeyRetrieval=true";
-    private static final String USER = "root";
-    private static final String PASSWORD = "";
+    private static final String URL = "jdbc:mysql://bwtsfa0gnbbwz5w5uuf5-mysql.services.clever-cloud.com:3306/bwtsfa0gnbbwz5w5uuf5?useSSL=false&serverTimezone=America/Lima&allowPublicKeyRetrieval=true";
+    private static final String USER = "uqcyv98gxvvzxgqf";
+    private static final String PASSWORD = "lr3UmmAursn6YKcpIbRB";
 
     public static Connection getConnection() throws SQLException {
         try {
